@@ -26,6 +26,7 @@ const useTimer = (h, m, s) => {
         h-=1 ; 
       }
       h = Math.max(h,0) ; 
+      if(h<=0 && m<=0 && s<=0) h=m=s = 0 ;
 
       return { h: h, m: m, s: s };
     });
@@ -38,7 +39,7 @@ const useTimer = (h, m, s) => {
 
 function App() {
 
-  const [time, countDown] = useTimer(1, 0, 3);
+  const [time, countDown] = useTimer(12,0,0);
 
   useEffect(() => {
     const id_ = setInterval(() => {
@@ -54,12 +55,7 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <div className="timeblock">
-          <Card>
-          <h1 className="timer-text">{time.h} : {time.m} : {time.s}</h1>
-
-          </Card>
-        </div>
+          <span className="timer-text">{time.h} : {time.m} : {time.s}</span>
       </Container>
     </div>
   );
