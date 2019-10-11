@@ -5,9 +5,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image:url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2155&q=80');
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.timeblock{
+  position: absolute;
+  left:50%; 
+  top:50% ; 
+  transform: translate(-50%,-50%);
+  padding:20px ; 
+}
+
+.timer-text{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-shadow: 5px 5px 7px black;
+  user-select: none;
+  font-size: 10em ; 
 }
