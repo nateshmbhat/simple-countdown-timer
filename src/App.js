@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Container, Card } from 'semantic-ui-react';
+import { Container, Card , Input } from 'semantic-ui-react';
 
 
 const useTimer = (h, m, s) => {
@@ -32,14 +32,26 @@ const useTimer = (h, m, s) => {
     });
   }
 
-  return [time, countDown];
+  return [time, countDown , setTime];
 }
 
+
+const Controller = (props)=>{
+  const {time , setTime} = props ; 
+  return (
+  <div style={{display:'flex' , position:'absolute'  }}>
+    <Input label='Hour' value={time.h} onChange={e=>setTime({...time , h:e.target.value })} />
+    <Input label = 'Minute' value={time.m} onChange={e=>setTime({...time , m : e.target.value })} />
+    <Input label='Second' value={time.s} onChange={e=>setTime({...time , s :e.target.value })} />
+  </div>
+  );
+}
 
 
 function App() {
 
-  const [time, countDown] = useTimer(12,0,0);
+  const [time, countDown , setTime] = useTimer(12,0,0);
+  const [showController , setShowController] = useState(false) ; 
 
   useEffect(() => {
     const id_ = setInterval(() => {
@@ -54,9 +66,16 @@ function App() {
 
   return (
     <div className="App">
+      {
+          showController &&
+          <Controller time={time} setTime={setTime} />
+        }
       <Container>
-          <span className="timer-text">{time.h} : {time.m} : {time.s}</span>
+        
+        <span onMouseOver={()=>setShowController(true)} onMouseLeave={()=>setShowController(false)} className="timer-text">{time.h<10?'0'+time.h:time.h} : {time.m<10?'0'+time.m:time.m} : {time.s<10?'0'+time.s:time.s}</span>
+
       </Container>
+ 
     </div>
   );
 }
